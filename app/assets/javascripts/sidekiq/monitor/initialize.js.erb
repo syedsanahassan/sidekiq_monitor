@@ -1,0 +1,12 @@
+(function() {
+    window.SidekiqMonitor = {
+        settings: {
+            api_url: function(path) {
+                return "<%= Sidekiq::Monitor.root_path %>api/" + path;
+            },
+            graphs: <%= Sidekiq::Monitor.options[:graphs].to_json %>,
+            poll_interval: <%= Sidekiq::Monitor.options[:poll_interval] %>
+        }
+    };
+
+}).call(this);

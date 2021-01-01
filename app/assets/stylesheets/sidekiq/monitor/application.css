@@ -1,0 +1,7 @@
+/*
+ *= require sidekiq/monitor/bootstrap.min
+ *= require sidekiq/monitor/bootstrap-select.min
+ *= require sidekiq/monitor/jquery.dataTables.bootstrap
+ *= require sidekiq/monitor/layout
+ *= require sidekiq/monitor/jobs_table
+*/
