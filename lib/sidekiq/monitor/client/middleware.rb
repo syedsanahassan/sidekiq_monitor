@@ -9,7 +9,14 @@ module Sidekiq
 
         def call(worker_class, item, queue, redis_pool=nil)
           ActiveRecord::Base.connection_pool.with_connection do
-            @processor.queue(worker_class, item, queue) if @options[:options][:ignore_jobs].exclude?(worker_class.to_s)
+            if @options.present? &&
+                @options[:options].present? &&
+                @options[:options][:ignore_jobs].present? &&
+                @options[:options][:ignore_jobs].exclude?(worker_class.to_s)
+              @processor.queue(worker_class, item, queue)
+            else
+              item
+            end
             yield
           end
         end
