@@ -12,6 +12,7 @@ module Sidekiq
     DEFAULTS = {
       :graphs => nil,
       :javascripts => [],
+      :ignore_jobs => [],
       :poll_interval => 3000
     }
 
@@ -36,7 +37,7 @@ end
 
 Sidekiq.configure_client do |config|
   config.client_middleware do |chain|
-    chain.add Sidekiq::Monitor::Client::Middleware
+    chain.add Sidekiq::Monitor::Client::Middleware, :options => Sidekiq::Monitor.options
   end
 end
 Sidekiq.configure_server do |config|
